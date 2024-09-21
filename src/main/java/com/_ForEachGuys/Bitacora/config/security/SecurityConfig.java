@@ -28,7 +28,9 @@ public class SecurityConfig {
         private final String[] AUTHENTICATED_PATHS = {};
 
         private final String[] WHITE_LIST = {
-                "/api/v2/**"
+                "/api/v1/auth/login",
+                "/api/v1/auth/logout",
+                "/error"
         };
 
         private final String[] COLABORADOR_PATHS = {};
@@ -78,7 +80,7 @@ public class SecurityConfig {
         CorsConfigurationSource corsConfigurationSource() {
                 var config = new CorsConfiguration();
 
-                config.setAllowedOrigins(List.of("*"));
+                config.setAllowedOrigins(List.of("http://localhost:4200"));
                 config.setAllowedMethods(List.of("*"));
                 config.setAllowedHeaders(List.of("*"));
                 config.setAllowCredentials(true);

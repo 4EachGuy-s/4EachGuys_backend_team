@@ -25,7 +25,7 @@
 
 |No.| 📦 Módulo | 🚩 Estado | 🚧 Pendiente |
 |:-:|:---------:|:---------:|:--------------:|
-|1  |Login      |En proceso |Pruebas con frontEnd|
+|1  |Login      |En proceso |Pruebas|
 
 ---
 
