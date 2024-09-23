@@ -26,7 +26,8 @@ public class JWTUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Optional<Persona> persona = this.personaRepository.findByUsername(username);
+		Optional<Persona> persona = this.personaRepository.findByEmail(username)
+							.or(() -> personaRepository.findByDni(Integer.parseInt(username)));
 
 		if(persona.isPresent()) {
 			return persona
@@ -35,9 +36,9 @@ public class JWTUserDetailService implements UserDetailsService {
 					Set<GrantedAuthority> authorities = new HashSet<>();
 					authorities.add(new SimpleGrantedAuthority(
 					usuario.getRol().getNombre().name()));
-					return new User(usuario.getUsername(), usuario.getPassword(), authorities);
+					return new User(usuario.getEmail(), usuario.getPassword(), authorities);
 				})
-				.orElseThrow(() -> new UsernameNotFoundException("User not exist"));
+				.orElseThrow(() -> new UsernameNotFoundException("El usuario no existe"));
 		}
 
 		else {

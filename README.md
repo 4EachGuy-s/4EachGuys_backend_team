@@ -1,4 +1,4 @@
-# PROYECTO BITÁCORA DE ACTIVIDADES
+# # 4EachGuy's
 
 ## 🔰 Equipo: 
 * 👨 David Carreño (Líder)

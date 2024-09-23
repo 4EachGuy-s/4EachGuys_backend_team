@@ -13,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com._ForEachGuys.Bitacora.config.security.ManagerCookies;
 import com._ForEachGuys.Bitacora.repositories.models.jwt.JWTRequest;
+import com._ForEachGuys.Bitacora.repositories.models.jwt.JWTResponse;
 import com._ForEachGuys.Bitacora.services.jwt.JWTService;
 import com._ForEachGuys.Bitacora.services.jwt.JWTUserDetailService;
 import com._ForEachGuys.Bitacora.utils.exceptions.NotFoundException;
@@ -42,8 +43,9 @@ public class AuthenticationController {
      */
     @PostMapping("/login")
     public ResponseEntity<?> postToken(@RequestBody JWTRequest request, HttpServletResponse response) {
+        System.out.println(request + "  ---   " + response);
         if (request == null || request.getUsername() == null || request.getUsername().isEmpty()) {
-            return ResponseEntity.badRequest().body(Map.of("Message", "Solicitud inválida"));
+            return ResponseEntity.badRequest().body(Map.of("message", "Solicitud inválida"));
         }
         else {
             this.authenticate(request);
@@ -54,8 +56,8 @@ public class AuthenticationController {
             // Crear cookie
             ManagerCookies.crearCookieJWT(response, "auth_token", token, (int) JWTService.JWT_TOKEN_VALIDITY);
 
-            // Redirigir a la página de inicio
-            return ResponseEntity.ok(Map.of("Message", "Ingreso exitoso", "status", 200));
+            JWTResponse jwtResponse = new JWTResponse("Ingreso exitoso", 200);
+            return ResponseEntity.ok(jwtResponse);
         }
     }
 

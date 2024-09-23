@@ -80,7 +80,7 @@ public class SecurityConfig {
         CorsConfigurationSource corsConfigurationSource() {
                 var config = new CorsConfiguration();
 
-                config.setAllowedOrigins(List.of("http://localhost:4200"));
+                config.setAllowedOrigins(List.of("http://localhost:4200", "https://catherine-ta-switch-cricket.trycloudflare.com"));
                 config.setAllowedMethods(List.of("*"));
                 config.setAllowedHeaders(List.of("*"));
                 config.setAllowCredentials(true);

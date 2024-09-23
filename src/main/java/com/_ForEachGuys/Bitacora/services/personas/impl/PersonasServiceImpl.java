@@ -18,8 +18,8 @@ public class PersonasServiceImpl implements PersonasService {
     private final PersonaRepository personaRepository;
 
     @Override
-    public Persona buscarUsuario(final String username) {
-        Optional<Persona> persona = personaRepository.findByUsername(username);
+    public Persona buscarUsuario(final String email) {
+        Optional<Persona> persona = personaRepository.findByEmail(email);
 
         if(persona.isPresent()) {
             System.out.println(persona.get());
