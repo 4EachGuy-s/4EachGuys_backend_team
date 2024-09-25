@@ -1,68 +1,97 @@
 package com._ForEachGuys.Bitacora.persona.domain.entity;
 
-
-
 import java.time.LocalDate;
+import java.util.List;
 
+import com._ForEachGuys.Bitacora.actividad.domain.entity.Actividad;
 import com._ForEachGuys.Bitacora.contacto.domain.entity.Contacto;
 import com._ForEachGuys.Bitacora.habilidad.domain.entity.Habilidad;
 import com._ForEachGuys.Bitacora.proyecto.domain.entity.Proyecto;
 import com._ForEachGuys.Bitacora.rol.domain.entity.Rol;
 import com._ForEachGuys.Bitacora.tipoDocumento.domain.entity.TipoDocumento;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "persona")
+@Table(name = "personas")
 public class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPersona;
 
+    @Size(min = 3, message = "El nombre debe ser de mínimo 3 caracteres.")
+    @Column(nullable = false)
     private String pNombre;
     private String sNombre;
+
+    @Size(min = 3, message = "El nombre debe ser de mínimo 3 caracteres.")
+    @Column(nullable = false)
     private String pApellido;
     private String sApellido;
+
+    @Size(min = 8, message = "El número de documento debe contener mínimo 8 dígitos")
+    @Column(nullable = false, unique = true)
     private String dni;
+
+    @Past
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private LocalDate fechaNacimiento;
+
+    @Size(min = 8, message = "La contraseña debe de contener mínimo 8 caracteres entre Mayúsculas, minúsculas, números y especiales")
+    @Column(nullable = false)
     private String password;
 
     // Relaciones
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_tipo_documento")
+    @JoinColumn(
+        name = "id_tipo_documento",
+        nullable = false
+        )
     private TipoDocumento tipoDocumento;
 
-    @ManyToOne
-    @JoinColumn(name = "id_proyecto")
-    private Proyecto proyecto;
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    private List<Proyecto> proyectos;
+
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    private List<Actividad> actividades;
 
     @ManyToOne
-    @JoinColumn(name = "id_contacto")
+    @JoinColumn(
+        name = "id_contacto",
+        nullable = false
+        )
     private Contacto contacto;
 
     @ManyToOne
-    @JoinColumn(name = "id_rol")
+    @JoinColumn(
+        name = "id_rol",
+        nullable = false
+        )
     private Rol rol;
 
-    @ManyToOne
-    @JoinColumn(name = "id_habilidad")
-    private Habilidad habilidad;
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    private List<Habilidad> habilidades;
 
-    // Getters y Setters
 }

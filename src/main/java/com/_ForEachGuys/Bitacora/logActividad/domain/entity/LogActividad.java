@@ -1,50 +1,42 @@
 package com._ForEachGuys.Bitacora.logActividad.domain.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-import com._ForEachGuys.Bitacora.actividad.domain.entity.Actividad;
-import com._ForEachGuys.Bitacora.persona.domain.entity.Persona;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "log_actividad")
+@Table(name = "logs_actividad")
 public class LogActividad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idLogActividad;
 
-    private String esActivo;
-    private String tiempo;
+    @Column(columnDefinition = "json")
+    private String actividad;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime fechaLog;
+
     private String comentarios;
-    private LocalDate inicioLabor;
-    private String descripcion;
-    private LocalDate inicioActividad;
-    private LocalDate fechaLog;
 
-    @ManyToOne
-    @JoinColumn(name = "id_persona")
-    private Persona persona;
+    /* DNI */
+    private String personaResponsable;
 
-    @ManyToOne
-    @JoinColumn(name = "id_actividad")
-    private Actividad actividad;
-
-    // Getters y Setters
+    /** 
+     * @param accion Acción realizada (Eliminar, actualizar, crear)
+     */
+    private String accion;
 }

@@ -1,10 +1,12 @@
 package com._ForEachGuys.Bitacora.proyecto.domain.entity;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import com._ForEachGuys.Bitacora.estado.domain.entity.Estado;
 import com._ForEachGuys.Bitacora.prioridad.domain.entity.Prioridad;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,37 +14,58 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "proyecto")
+@Table(name = "proyectos")
 public class Proyecto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idProyecto;
 
-    private String codigo;
-    private String tiempo;
+    @Column(nullable = false, unique = true)
+    private UUID codigo;
+
+    /** 
+     * @param tiempo Hace referencia al tiempo total invertido en el proyecto
+     */
+    private double tiempo;
+
+    @Temporal(TemporalType.DATE)
     private LocalDate fechaEntrega;
+
+    @Size(min = 3, message = "EL título del proyecto no puede estar vacío, mínimo 3 caracteres")
+    @Column(nullable = false)
     private String titulo;
-    private String estado;
+
+    /**
+     * @param estadoProyecto Hace referencia a los estados del proyecto 
+     * activa, pausa, finalizada, cancelada
+     */
+
+     @ManyToOne
+     @JoinColumn(
+         name = "id_estado",
+         nullable = false
+         )
+    private Estado estadoProyecto;
 
     @ManyToOne
     @JoinColumn(name = "id_prioridad")
     private Prioridad prioridad;
 
-    @ManyToOne
-    @JoinColumn(name = "id_estado")
-    private Estado estadoProyecto;
+    /** 
+     * @param esActivo Hace referencia a si el proyecto esta en progreso o finalizó / se canceló
+     * true en progreso y se puede gestionar
+     */
+    @Column(nullable = false)
+    private boolean esActivo;
 
-    // Getters y Setters
 }

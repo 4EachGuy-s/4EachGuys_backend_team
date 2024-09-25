@@ -1,22 +1,19 @@
 package com._ForEachGuys.Bitacora.estado.domain.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "estado")
+@Table(name = "estados")
 public class Estado {
 
     @Id
@@ -24,7 +21,9 @@ public class Estado {
     private Long idEstado;
 
     private String descripcionEstado;
+
+    @Size(min = 1, message = "El nombre del estado debe contener mínimo 1 carácter")
+    @Column(nullable = false, unique = true)
     private String nombreEstado;
 
-    // Getters y Setters
 }

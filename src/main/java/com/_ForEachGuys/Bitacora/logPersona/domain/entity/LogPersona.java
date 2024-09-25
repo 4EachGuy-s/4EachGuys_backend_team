@@ -1,7 +1,10 @@
 package com._ForEachGuys.Bitacora.logPersona.domain.entity;
 
+import java.time.LocalDateTime;
+
 import com._ForEachGuys.Bitacora.persona.domain.entity.Persona;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,14 +32,19 @@ public class LogPersona {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idLogPersona;
 
-    private String password;
-    private String estado;
-    private String accion;
+    @Column(columnDefinition = "json")
+    private String persona;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime fechaLog;
+
     private String comentarios;
 
-    @ManyToOne
-    @JoinColumn(name = "id_persona")
-    private Persona persona;
+    /* DNI */
+    private String personaResponsable;
 
-    // Getters y Setters
+    /** 
+     * @param accion Acción realizada (Eliminar, actualizar, crear)
+     */
+    private String accion;
 }
