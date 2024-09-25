@@ -1,5 +1,6 @@
 package com._ForEachGuys.Bitacora.tipoDocumento.domain.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,6 +33,7 @@ public class TipoDocumento {
      *                      ejemplo TI, CC, etc.
      */
     @Size(min = 3, message = "El tipo de documento debe ser de mínimo 2 caracteres.")
+    @Column(nullable = false, unique = true)
     private String nombreTipoDoc;
 
 }
