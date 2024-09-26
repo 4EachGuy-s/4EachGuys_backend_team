@@ -37,7 +37,4 @@ public class Rol {
     public String getNombreRol() {
         return nombreRol;
     }
-
-    
-
 }

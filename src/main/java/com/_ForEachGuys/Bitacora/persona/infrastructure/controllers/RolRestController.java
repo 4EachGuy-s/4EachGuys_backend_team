@@ -51,7 +51,7 @@ public class RolRestController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Rol> updateRol(@PathVariable Long id, @RequestBody Rol rol) {
-        rol.setIdRol(id);
+        //rol.setIdRol(id);
         try {
             Rol updateRol = rolService.update(rol);
             return ResponseEntity.ok(updateRol);

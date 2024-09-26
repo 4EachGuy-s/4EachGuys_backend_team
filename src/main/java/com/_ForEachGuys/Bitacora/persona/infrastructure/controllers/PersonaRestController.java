@@ -52,7 +52,7 @@ public class PersonaRestController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Persona> updatePersona(@PathVariable Long id, @RequestBody Persona persona) {
-        persona.setIdPersona(id);
+        //persona.setIdPersona(id);
         try {
             Persona updatePersona = personaService.update(persona);
             return ResponseEntity.ok(updatePersona);

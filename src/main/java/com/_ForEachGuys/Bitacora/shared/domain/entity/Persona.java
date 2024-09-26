@@ -100,6 +100,4 @@ public class Persona {
         )
     )
     private List<Habilidad> habilidades;
-
-    
 }

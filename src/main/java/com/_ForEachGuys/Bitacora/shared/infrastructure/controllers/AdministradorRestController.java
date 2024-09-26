@@ -52,7 +52,7 @@ public class AdministradorRestController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Persona> updateAdministrador(@PathVariable Long id, @RequestBody Persona persona) {
-        persona.setIdPersona(id);
+        //persona.setIdPersona(id);
         try {
             Persona updateAdministrador = administradorService.update(persona);
             return ResponseEntity.ok(updateAdministrador);

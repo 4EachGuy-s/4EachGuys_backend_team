@@ -25,7 +25,7 @@ import jakarta.persistence.EntityNotFoundException;
 public class LogRestPersonaController {
     private final ILogServicePersona logServicePersona;
     
-       @Autowired
+    @Autowired
     public LogRestPersonaController(ILogServicePersona logServicePersona){
         this.logServicePersona = logServicePersona;
     }
@@ -53,7 +53,7 @@ public class LogRestPersonaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Persona> updatePersona(@PathVariable Long id, @RequestBody Persona Persona) {
-        Persona.setIdPersona(id);
+        //Persona.setIdPersona(id);
         try{
             Persona updatePersona = logServicePersona.update(Persona);
             return ResponseEntity.ok(updatePersona);
