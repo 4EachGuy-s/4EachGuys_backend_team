@@ -29,7 +29,8 @@ public class AuthServiceImpl implements IAuthServic {
     @Override
     /*FALTA LOS GET PARA IMPLEMENTAR */
     public Persona save(Persona persona) {
-        /* */
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
     @Override
