@@ -25,6 +25,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "actividades")
 public class Actividad {
 
+    public Long getIdActividad() {
+        return idActividad;
+    }
+
+    public void setIdActividad(Long idActividad) {
+        this.idActividad = idActividad;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idActividad;

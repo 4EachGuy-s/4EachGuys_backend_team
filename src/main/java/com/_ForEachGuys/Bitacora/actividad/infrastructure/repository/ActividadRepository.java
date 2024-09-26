@@ -1,5 +1,9 @@
 package com._ForEachGuys.Bitacora.actividad.infrastructure.repository;
 
-public interface ActividadRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com._ForEachGuys.Bitacora.shared.domain.entity.Actividad;
+
+public interface ActividadRepository extends JpaRepository<Actividad, Long>{
     
 }
