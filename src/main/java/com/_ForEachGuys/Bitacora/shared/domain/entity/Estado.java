@@ -26,4 +26,12 @@ public class Estado {
     @Column(nullable = false, unique = true)
     private String nombreEstado;
 
+    public Long getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(Long idEstado) {
+        this.idEstado = idEstado;
+    }
+
 }

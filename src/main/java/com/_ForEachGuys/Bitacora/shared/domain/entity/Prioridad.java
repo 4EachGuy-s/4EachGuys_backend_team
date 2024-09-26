@@ -26,4 +26,12 @@ public class Prioridad {
     @Column(nullable = false, unique = true)
     private String nombrePrioridad;
 
+    public Long getIdPrioridad() {
+        return idPrioridad;
+    }
+
+    public void setIdPrioridad(Long idPrioridad) {
+        this.idPrioridad = idPrioridad;
+    }
+
 }
