@@ -1,38 +1,40 @@
-package com._ForEachGuys.Bitacora.shared.domain.implement;
+package com._ForEachGuys.Bitacora.persona.domain.implement;
 
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com._ForEachGuys.Bitacora.shared.application.service.IAdministradorService;
-import com._ForEachGuys.Bitacora.shared.domain.entity.Persona;
-import com._ForEachGuys.Bitacora.shared.infrastructure.repository.AdministradorRepository;
+
+import com._ForEachGuys.Bitacora.persona.application.service.ITipoDocumentoService;
+import com._ForEachGuys.Bitacora.shared.domain.entity.TipoDocumento;
 
 @Service
-public class AdministradorServiceImpl implements IAdministradorService {
+public class TipoDocumentoServiceImpl implements ITipoDocumentoService {
     @Autowired
-    private AdministradorRepository administradorRepository;
+    private TipoDocumento tipoDocumento;
+
 
     @Override
-    public List<Persona> findAll() {
+    public List<TipoDocumento> findAll() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
     @Override
-    public Optional<Persona> findById(Long id) {
+    public Optional<TipoDocumento> findById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
-    public Persona save(Persona persona) {
+    public TipoDocumento save(TipoDocumento tipoDocumento) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
     @Override
-    public Persona update(Persona persona) {
+    public TipoDocumento update(TipoDocumento tipoDocumento) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }

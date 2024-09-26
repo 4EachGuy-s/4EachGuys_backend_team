@@ -36,4 +36,12 @@ public class TipoDocumento {
     @Column(nullable = false, unique = true)
     private String nombreTipoDoc;
 
+    public Long getIdTipoDocumento() {
+        return idTipoDocumento;
+    }
+
+    public void setIdTipoDocumento(Long idTipoDocumento) {
+        this.idTipoDocumento = idTipoDocumento;
+    }
+
 }

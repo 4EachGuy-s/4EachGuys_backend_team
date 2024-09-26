@@ -30,4 +30,12 @@ public class Contacto {
     @Column(nullable = false, unique = true)
     private String correoElectronico;
 
+    public Long getIdContacto() {
+        return idContacto;
+    }
+
+    public void setIdContacto(Long idContacto) {
+        this.idContacto = idContacto;
+    }
+
 }

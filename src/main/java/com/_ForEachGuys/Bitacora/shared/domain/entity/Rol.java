@@ -1,4 +1,4 @@
-package com._ForEachGuys.Bitacora.persona;
+package com._ForEachGuys.Bitacora.shared.domain.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
