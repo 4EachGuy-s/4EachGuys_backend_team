@@ -24,4 +24,12 @@ public class TipoActividad {
     @Column(nullable = false, unique = true)
     private String nombreTipoActividad;
 
+    public Long getIdTipoActividad() {
+        return idTipoActividad;
+    }
+
+    public void setIdTipoActividad(Long idTipoActividad) {
+        this.idTipoActividad = idTipoActividad;
+    }
+
 }
