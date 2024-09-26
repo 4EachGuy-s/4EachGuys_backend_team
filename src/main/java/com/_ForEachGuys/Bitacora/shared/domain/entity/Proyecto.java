@@ -65,4 +65,11 @@ public class Proyecto {
     @Column(nullable = false)
     private boolean esActivo;
 
+    public Long getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(Long idProyecto) {
+        this.idProyecto = idProyecto;
+    }
 }

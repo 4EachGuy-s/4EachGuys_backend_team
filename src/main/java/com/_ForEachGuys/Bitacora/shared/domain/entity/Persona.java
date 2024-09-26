@@ -97,4 +97,11 @@ public class Persona {
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
     private List<Habilidad> habilidades;
 
+    public Long getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Long idPersona) {
+        this.idPersona = idPersona;
+    }
 }
