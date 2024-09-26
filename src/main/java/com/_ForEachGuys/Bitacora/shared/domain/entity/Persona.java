@@ -29,14 +29,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "personas")
 public class Persona {
 
-    public Long getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Long idPersona) {
-        this.idPersona = idPersona;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPersona;
