@@ -30,4 +30,12 @@ public class Habilidad {
     @JoinColumn(name = "id_tipo_habilidad")
     private TipoHabilidad tipoHabilidad;
 
+    public Long getIdHabilidad() {
+        return idHabilidad;
+    }
+
+    public void setIdHabilidad(Long idHabilidad) {
+        this.idHabilidad = idHabilidad;
+    }
+
 }

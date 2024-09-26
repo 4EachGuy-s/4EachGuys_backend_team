@@ -3,8 +3,6 @@ package com._ForEachGuys.Bitacora.shared.domain.entity;
 import java.time.LocalDate;
 import java.util.List;
 
-import com._ForEachGuys.Bitacora.persona.Rol;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

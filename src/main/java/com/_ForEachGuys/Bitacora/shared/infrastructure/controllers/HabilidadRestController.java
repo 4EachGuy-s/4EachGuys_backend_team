@@ -13,58 +13,56 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com._ForEachGuys.Bitacora.shared.application.service.IAdministradorService;
-import com._ForEachGuys.Bitacora.shared.domain.entity.Persona;
-
+import com._ForEachGuys.Bitacora.shared.application.service.IHabilidadService;
+import com._ForEachGuys.Bitacora.shared.domain.entity.Habilidad;
 import jakarta.persistence.EntityNotFoundException;
 
 @RestController
-@RequestMapping("/api/v1/")
-public class AdministradorRestController {
-    private final IAdministradorService administradorService;
+@RequestMapping("/habilidad")
+public class HabilidadRestController {
+    private final IHabilidadService habilidadService;
 
     @Autowired
-    public AdministradorRestController(IAdministradorService administradorService) {
-        this.administradorService = administradorService;
+    public HabilidadRestController(IHabilidadService habilidadService) {
+        this.habilidadService = habilidadService;
     }
 
     @GetMapping
-    public List<Persona> getAllAdministradores() {
-        return administradorService.findAll();
+    public List<Habilidad> getAllHabilidades() {
+        return habilidadService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Persona> getAdministradoresById(@PathVariable Long id) {
-        Optional<Persona> administrador = administradorService.findById(id);
-        if (administrador.isPresent()) {
-            return ResponseEntity.ok(administrador.get());
+    public ResponseEntity<Habilidad> getHabilidadById(@PathVariable Long id) {
+        Optional<Habilidad> habilidad = habilidadService.findById(id);
+        if (habilidad.isPresent()) {
+            return ResponseEntity.ok(habilidad.get());
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @PostMapping
-    public ResponseEntity<Persona> createAdministrador(@RequestBody Persona persona) {
-        Persona savedAdministrador = administradorService.save(persona);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedAdministrador);
+    public ResponseEntity<Habilidad> createHabilidad(@RequestBody Habilidad habilidad) {
+        Habilidad savedHabilidad = habilidadService.save(habilidad);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedHabilidad);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Persona> updateAdministrador(@PathVariable Long id, @RequestBody Persona persona) {
-        persona.setIdPersona(id);
+    public ResponseEntity<Habilidad> updateHabilidad(@PathVariable Long id, @RequestBody Habilidad habilidad) {
+        habilidad.setIdHabilidad(id);
         try {
-            Persona updateAdministrador = administradorService.update(persona);
-            return ResponseEntity.ok(updateAdministrador);
+            Habilidad updateHabilidad = habilidadService.update(habilidad);
+            return ResponseEntity.ok(updateHabilidad);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAdministrador(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
         try {
-            administradorService.deleteById(id);
+            habilidadService.deleteById(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
