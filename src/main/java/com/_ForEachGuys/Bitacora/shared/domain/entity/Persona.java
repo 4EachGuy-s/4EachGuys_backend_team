@@ -12,8 +12,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -21,11 +24,13 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Table(name = "personas")
 public class Persona {
 
@@ -66,13 +71,13 @@ public class Persona {
         )
     private TipoDocumento tipoDocumento;
 
-    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "personaResponsable", fetch = FetchType.LAZY)
     private List<Proyecto> proyectos;
 
-    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "personaResponsable", fetch = FetchType.LAZY)
     private List<Actividad> actividades;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(
         name = "id_contacto",
         nullable = false
@@ -86,7 +91,17 @@ public class Persona {
         )
     private Rol rol;
 
-    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(
+        name = "persona_habilidad",
+        joinColumns = @JoinColumn(
+            name = "persona_id"
+        ),
+        inverseJoinColumns = @JoinColumn(
+            name = "habilidad_id"
+        )
+    )
     private List<Habilidad> habilidades;
 
+    
 }

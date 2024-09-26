@@ -20,7 +20,7 @@ import io.jsonwebtoken.security.Keys;
 public class JWTService {
 
      // Tiempo de validez del token en segundos
-    public static final long JWT_TOKEN_VALIDITY = 1 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 10 * 60 * 60;
 
     // Firma secreta
     public static final String SECRET_KEY = FirmaSecreta.getFirma();

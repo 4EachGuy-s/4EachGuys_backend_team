@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "rol")
+@Table(name = "roles")
 public class Rol {
 
     @Id
@@ -25,5 +25,19 @@ public class Rol {
     @Size(min = 1, message = "El nombre del rol debe contener mínimo 1 carácter")
     @Column(nullable = false, unique = true)
     private String nombreRol;
+
+    public Long getIdRol() {
+        return idRol;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public String getNombreRol() {
+        return nombreRol;
+    }
+
+    
 
 }

@@ -30,7 +30,7 @@ public class Proyecto {
     @Column(nullable = false, unique = true)
     private UUID codigo;
 
-    /** 
+    /**
      * @param tiempo Hace referencia al tiempo total invertido en el proyecto
      */
     private double tiempo;
@@ -43,24 +43,30 @@ public class Proyecto {
     private String titulo;
 
     /**
-     * @param estadoProyecto Hace referencia a los estados del proyecto 
-     * activa, pausa, finalizada, cancelada
+     * @param estadoProyecto Hace referencia a los estados del proyecto
+     *                       activa, pausa, finalizada, cancelada
      */
 
-     @ManyToOne
-     @JoinColumn(
-         name = "id_estado",
-         nullable = false
-         )
+    @ManyToOne
+    @JoinColumn(name = "id_estado", nullable = false)
     private Estado estadoProyecto;
+
+    /**
+     * @param personaResponsable Hace referencia a la persona a cargo de la
+     *                           actividad
+     */
+    @ManyToOne
+    @JoinColumn(name = "id_persona_responsable", nullable = false)
+    private Persona personaResponsable;
 
     @ManyToOne
     @JoinColumn(name = "id_prioridad")
     private Prioridad prioridad;
 
-    /** 
-     * @param esActivo Hace referencia a si el proyecto esta en progreso o finalizó / se canceló
-     * true en progreso y se puede gestionar
+    /**
+     * @param esActivo Hace referencia a si el proyecto esta en progreso o finalizó
+     *                 / se canceló
+     *                 true en progreso y se puede gestionar
      */
     @Column(nullable = false)
     private boolean esActivo;
