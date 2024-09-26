@@ -26,4 +26,11 @@ public class Rol {
     @Column(nullable = false, unique = true)
     private String nombreRol;
 
+    public Long getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(Long idRol) {
+        this.idRol = idRol;
+    }
 }
