@@ -2,37 +2,37 @@ package com._ForEachGuys.Bitacora.shared.domain.implement;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com._ForEachGuys.Bitacora.shared.application.service.IAdministradorService;
-import com._ForEachGuys.Bitacora.shared.domain.entity.Persona;
-import com._ForEachGuys.Bitacora.shared.infrastructure.repository.AdministradorRepository;
 
-@Service
-public class AdministradorServiceImpl implements IAdministradorService {
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com._ForEachGuys.Bitacora.shared.application.service.IHabilidadService;
+import com._ForEachGuys.Bitacora.shared.domain.entity.Habilidad;
+import com._ForEachGuys.Bitacora.shared.infrastructure.repository.HabilidadRepository;
+
+public class HabilidadServiceImpl implements IHabilidadService {
     @Autowired
-    private AdministradorRepository administradorRepository;
+    private HabilidadRepository habilidadRepository;
 
     @Override
-    public List<Persona> findAll() {
+    public List<Habilidad> findAll() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findAll'");
     }
 
     @Override
-    public Optional<Persona> findById(Long id) {
+    public Optional<Habilidad> findById(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'findById'");
     }
 
     @Override
-    public Persona save(Persona persona) {
+    public Habilidad save(Habilidad habilidad) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'save'");
     }
 
     @Override
-    public Persona update(Persona persona) {
+    public Habilidad update(Habilidad habilidad) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
@@ -42,4 +42,5 @@ public class AdministradorServiceImpl implements IAdministradorService {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
     }
+    
 }

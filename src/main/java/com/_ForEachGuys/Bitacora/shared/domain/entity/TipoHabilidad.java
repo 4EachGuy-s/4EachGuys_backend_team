@@ -26,4 +26,12 @@ public class TipoHabilidad {
 
     private String descripcion;
 
+    public Long getIdTipoHabilidad() {
+        return idTipoHabilidad;
+    }
+
+    public void setIdTipoHabilidad(Long idTipoHabilidad) {
+        this.idTipoHabilidad = idTipoHabilidad;
+    }
+
 }
