@@ -6,12 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -29,9 +28,9 @@ public class SecurityConfig {
         private final String[] AUTHENTICATED_PATHS = {};
 
         private final String[] WHITE_LIST = {
-                "/api/v1/auth/login",
-                "/api/v1/auth/logout",
-                "/error"
+                        "/api/v1/auth/login",
+                        "/api/v1/auth/logout",
+                        "/error"
         };
 
         private final String[] COLABORADOR_PATHS = {};
@@ -71,7 +70,6 @@ public class SecurityConfig {
                 return http.build();
         }
 
-        @SuppressWarnings("deprecation")
         @Bean
         PasswordEncoder passwordEncoder() {
                 return new BCryptPasswordEncoder();
@@ -93,7 +91,12 @@ public class SecurityConfig {
         }
 
         @Bean
-        AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-                return configuration.getAuthenticationManager();
+        AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+                AuthenticationManagerBuilder authenticationManagerBuilder = http
+                                .getSharedObject(AuthenticationManagerBuilder.class);
+                authenticationManagerBuilder.userDetailsService(jwtUserDetailService)
+                                .passwordEncoder(passwordEncoder());
+                return authenticationManagerBuilder.build();
         }
+
 }

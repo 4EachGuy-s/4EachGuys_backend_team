@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "rol")
+@Table(name = "roles")
 public class Rol {
 
     @Id
@@ -30,7 +30,14 @@ public class Rol {
         return idRol;
     }
 
-    public void setIdRol(Long idRol) {
-        this.idRol = idRol;
+    public String getDescripcion() {
+        return descripcion;
     }
+
+    public String getNombreRol() {
+        return nombreRol;
+    }
+
+    
+
 }
